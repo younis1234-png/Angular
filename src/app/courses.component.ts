@@ -15,10 +15,17 @@ export class CoursesComponent {
   courses;
 
   // a constructor is where we initialize and object
-  constructor() {
-    let service = new CoursesService();
+  // adding a dependice as a prameter to our constructor
+  //
+  constructor(service: CoursesService) {
+    // is we do the new CoursesService( ==>> we can't change this at run time )
+    // let service = new CoursesService();
 
     //initialize it
+    // Dependency Injection: ( our constructor dependency)
+    // we need to add CoursesService in our app.module as a providers
+    // When angular going to to create an instance of this componeent first, it will instantiate its deoendencies 
+    // and than it will inject THOSE DEPENDENCIES INTO THE CONSTROCTOR OF THIS CLASSE
     this.courses = service.getCourses();
   }
 
@@ -27,5 +34,4 @@ export class CoursesComponent {
     return this.title;
   }
 
-  // Logic for calling an HTTP server
 }
