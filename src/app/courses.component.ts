@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { CoursesService } from './courses.service';
 
 @Component({
   selector: 'courses',
@@ -11,14 +12,20 @@ import { Component } from '@angular/core';
 })
 export class CoursesComponent {
   title = 'List of courses';
-  courses = [' course1', 'course2', 'course3'];
+  courses;
 
+  // a constructor is where we initialize and object
+  constructor() {
+    let service = new CoursesService();
+
+    //initialize it
+    this.courses = service.getCourses();
+  }
+
+  //method
   getTitle() {
     return this.title;
   }
-}
 
-// Directive
-// *ngFor="take an expression"
-// let course of courses ====> we defining a variable, this is like a loop variable in javascript
-// when angular see this is going to Alternate throught our courses array
+  // Logic for calling an HTTP server
+}
